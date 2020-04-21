@@ -49,14 +49,23 @@ def program(bot, update):
         update.message.reply_text("Bienvenido al nuevo RamoBOT\n Aqui encontraras informacion sobre tus clases online. Este es un bot en desarrollo, por lo que cualquier error, o sugerencia por favor contactarme a https://t.me/Urra_Aldunate .El codigo sera publicado pronto. Para ver los comandos escribe **comandos**")
       
     if (k[0]=="comandos"):
-       update.message.reply_text("'comandos' muestra este menu.\n 'help' muestra el menu de bienvenida.\n 'zoom' para mostrar inmformacion sobre un ramo.\n 'zoom agregar' para agregar informacion sobre un ramo (en desarrollo) ")
+       update.message.reply_text("'comandos' muestra este menu.\n 'help' muestra el menu de bienvenida.\n 'zoom' para mostrar informacion sobre un ramo.\n 'zoom agregar' para agregar informacion sobre un ramo (en desarrollo) ")
+       return 0
+
+    if (k[1]=="agregar"):
+       update.message.reply_text("Para agregar info de un ramo, en un mensaje agregar la siguiente informacion:\n sigla nombre_apellido dia-hora ZoomID password")
        return 0
 
     if (k[0]=="zoom"):
        if len(k[1])<4:
-          update.message.reply_text("Por favor ingresar un argumento con mas de 3 caracteres, para buscar un ramo debes ingresar:\n 'zoom dato'*\n cambiando dato por la sigla del ramo, o el apellido del profesor, o el ID de zoom.\n Como ejemplo puedes ingresar el comando 'zoom ipm263' ")
+          update.message.reply_text("Por favor ingresar un argumento con mas de 3 caracteres, para buscar un ramo debes ingresar:\n 'zoom dato'\n cambiando dato por la sigla del ramo, o el apellido del profesor, o el ID de zoom.\n Como ejemplo puedes ingresar el comando 'zoom ipm263' ")
           return 0
-
+ 
+    if (k[0]=="zoom"):
+        if encontrar(megalista,k[1])==[]:
+           update.message.reply_text("No se han encontrado resultados, puedes agregar info del ramo con el comando 'zoom agregar'")
+           return 0
+      
 
     if (k[0]=="zoom"):
        for j in encontrar(megalista,k[1]):
